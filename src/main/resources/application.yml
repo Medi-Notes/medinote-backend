@@ -1,0 +1,55 @@
+spring:
+  application:
+    name: backend
+
+  profiles:
+    default: local
+
+#  datasource:
+#    url: jdbc:mysql://${BANGO_DB_URL}:${BANGO_DB_PORT}/${BANGO_DB_NAME}?serverTimezone=UTC&characterEncoding=UTF-8
+#    username: ${BANGO_DB_USERNAME}
+#    password: ${BANGO_DB_PASSWORD}
+
+  h2:
+    console:
+      path: /h2-console
+      enabled: true
+      settings:
+        web-allow-others: true
+
+  datasource:
+    url: jdbc:h2:mem:test
+
+  data:
+    redis:
+      host: ${REDIS_HOST}
+      port: ${REDIS_PORT}
+
+jwt:
+  secret: ${JWT_SECRET_KEY}
+
+oauth:
+  kakao:
+    client-id: ${KAKAO_REST_API_KEY}
+    authorization-grant-type: "authorization_code"
+    redirect-uri: "http://localhost:5173/auth/kakao/redirect"
+
+  google:
+    client-id: ${GOOGLE_REST_API_KEY}
+    client-secret: ${GOOGLE_OAUTH_CLIENT_SECRET}
+    authorization-grant-type: "authorization_code"
+    redirect-uri: "http://localhost:5173/auth/google/redirect"
+
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        include: health,info,prometheus
+#  prometheus:
+#    metrics:
+#      export:
+#        enabled: true
+
+#logging:
+#  level:
+#    org.springframework: debug

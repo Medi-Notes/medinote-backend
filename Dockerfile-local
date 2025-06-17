@@ -1,0 +1,17 @@
+FROM amazoncorretto:17
+
+WORKDIR /app
+
+# Gradle wrapper 및 설정 복사
+COPY gradlew .
+COPY gradle ./gradle
+COPY build.gradle .
+COPY settings.gradle .
+
+RUN chmod +x gradlew
+# 의존성 미리 다운받기 (빌드 캐시 최적화)
+RUN ./gradlew build --no-daemon || true
+
+# 소스코드는 volume으로 마운트되므로 복사 생략
+
+CMD ["./gradlew", "bootRun", "--no-daemon"]
