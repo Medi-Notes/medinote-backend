@@ -79,13 +79,13 @@ jobs:
           key: ${{ secrets.RELEASE_SERVER_KEY }}
           script: |
             docker pull ${{ secrets.DOCKERHUB_USERNAME }}/medinote-server:prod-${{ github.sha }}
-            docker stop bango-server || true
-            docker rm bango-server || true
-            docker run -d --name bango-server \
+            docker stop medinote-server || true
+            docker rm medinote-server || true
+            docker run -d --name medinote-server \
               -e SPRING_PROFILES_ACTIVE=prod \
               -p 8080:8080 \
               --memory="512m" \
               --memory-swap="1638m" \
               --network medinote-network \
-              ${{ secrets.DOCKERHUB_USERNAME }}/bango-server:dev-${{ github.sha }}
+              ${{ secrets.DOCKERHUB_USERNAME }}/medinote-server:prod-${{ github.sha }}
             sudo docker system prune -af
