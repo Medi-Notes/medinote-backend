@@ -12,4 +12,4 @@ WORKDIR /app
 COPY --from=build /app/build/libs/backend-0.0.1-SNAPSHOT.jar /app/medinote/server.jar
 
 # 컨테이너 실행 시
-CMD ["java", "-Xmx256m", "-Duser.timezone=Asia/Seoul", "-jar", "/app/bango/server.jar"]
+CMD ["java", "-Xmx256m", "-Duser.timezone=Asia/Seoul", "-jar", "/app/medinote/server.jar"]
