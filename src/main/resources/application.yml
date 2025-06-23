@@ -5,25 +5,30 @@ spring:
   profiles:
     default: local
 
-#  datasource:
-#    url: jdbc:mysql://${BANGO_DB_URL}:${BANGO_DB_PORT}/${BANGO_DB_NAME}?serverTimezone=UTC&characterEncoding=UTF-8
-#    username: ${BANGO_DB_USERNAME}
-#    password: ${BANGO_DB_PASSWORD}
-
-  h2:
-    console:
-      path: /h2-console
-      enabled: true
-      settings:
-        web-allow-others: true
-
   datasource:
-    url: jdbc:h2:mem:test
+    url: jdbc:mysql://${DB_URL}:${DB_PORT}/${DB_NAME}?serverTimezone=UTC&characterEncoding=UTF-8
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+
+#  jpa:
+#    hibernate:
+#      ddl-auto: create-drop
+
 
   data:
     redis:
       host: ${REDIS_HOST}
       port: ${REDIS_PORT}
+
+  cloud:
+    aws:
+      region:
+        static: ap-northeast-2
+      credentials:
+        access-key: ${AWS_ACCESS_KEY}
+        secret-key: ${AWS_SECRET_KEY}
+      s3:
+        bucket-name: ${AWS_S3_BUCKET_NAME}
 
 jwt:
   secret: ${JWT_SECRET_KEY}
