@@ -64,6 +64,7 @@ public enum ErrorType {
     /**
      * 500 INTERNAL_SERVER_ERROR
      */
+    S3_UPLOAD_FILE(HttpStatus.INTERNAL_SERVER_ERROR, "S3 업로드에 실패했습니다."),
     INTERNAL_SERVER_ERROR(HttpStatus.INTERNAL_SERVER_ERROR, "서버 내부 오류가 발생했습니다.");
 
 
