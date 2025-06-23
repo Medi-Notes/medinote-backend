@@ -22,7 +22,7 @@ import static java.util.Objects.isNull;
 @Component
 @RequiredArgsConstructor
 public class JwtProvider {
-    private static final Long ACCESS_TOKEN_EXPIRATION_TIME = 60 * 1000L * 15 * 24 * 365; // Access Token 만료시간 15분
+    private static final Long ACCESS_TOKEN_EXPIRATION_TIME = 60 * 1000L * 15 * 24; // Access Token 만료시간 15분
     private static final Long REFRESH_TOKEN_EXPIRATION_TIME = 60 * 1000L * 60 * 24 * 7; // Refresh Token 만료시간 7일
 
     @Value("${jwt.secret}")

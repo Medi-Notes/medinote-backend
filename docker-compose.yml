@@ -1,4 +1,4 @@
-version: "3.8"
+version: "2.4"
 
 services:
   medinote-backend:
@@ -8,6 +8,8 @@ services:
     container_name: medinote-backend
     ports:
       - "8080:8080"
+    mem_limit: 512m
+    memswap_limit: 1638m
     volumes:
       - .:/app  # 로컬 소스를 컨테이너에 마운트
     #      - /app/build  # Gradle 빌드 아티팩트 위치 (핫 리로드 영향 최소화)
