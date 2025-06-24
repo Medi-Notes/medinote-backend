@@ -1,9 +1,6 @@
 package com.medinote.backend.domain.medinote.service;
 
-import com.medinote.backend.domain.medinote.dto.MedinoteResponse;
-import com.medinote.backend.domain.medinote.dto.UpdateMedinoteStateRequest;
-import com.medinote.backend.domain.medinote.dto.UpdateMedinoteTextRequest;
-import com.medinote.backend.domain.medinote.dto.UpdateSttTextRequest;
+import com.medinote.backend.domain.medinote.dto.*;
 import com.medinote.backend.domain.medinote.entity.Medinote;
 import com.medinote.backend.domain.medinote.entity.MedinoteState;
 import com.medinote.backend.domain.medinote.repository.MedinoteRepository;
@@ -69,5 +66,13 @@ public class MedinoteService {
     @Transactional
     public Integer updateMedinoteText(Long medinoteId, UpdateMedinoteTextRequest request) {
         return medinoteRepository.updateMedinoteTextById(medinoteId, request.medinoteText());
+    }
+
+    public MedinoteListResponse getMedinoteList(Principal principal) {
+        Long memberId = JwtProvider.getMemberIdFromPrincipal(principal);
+        Member member = memberRepository.getMemberByMemberId(memberId)
+                .orElseThrow(() -> new CustomException(NOT_FOUND_MEMBER_ERROR));
+
+        return MedinoteListResponse.from(medinoteRepository.findAllByMemberId(member));
     }
 }

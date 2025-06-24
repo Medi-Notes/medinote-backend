@@ -1,9 +1,6 @@
 package com.medinote.backend.domain.medinote.controller;
 
-import com.medinote.backend.domain.medinote.dto.MedinoteResponse;
-import com.medinote.backend.domain.medinote.dto.UpdateMedinoteStateRequest;
-import com.medinote.backend.domain.medinote.dto.UpdateMedinoteTextRequest;
-import com.medinote.backend.domain.medinote.dto.UpdateSttTextRequest;
+import com.medinote.backend.domain.medinote.dto.*;
 import com.medinote.backend.domain.medinote.service.MedinoteService;
 import com.medinote.backend.global.common.ApiResponse;
 import jakarta.validation.Valid;
@@ -61,6 +58,14 @@ public class MedinoteController implements MedinoteApi {
 
         return ResponseEntity.ok(ApiResponse.success(
                 UPDATE_MEDINOTE_TEXT_SUCCESS, medinoteService.updateMedinoteText(medinoteId, request)
+        ));
+    }
+
+    @GetMapping
+    public ResponseEntity<ApiResponse<MedinoteListResponse>> getMedinoteList(Principal principal) {
+        return ResponseEntity.ok(ApiResponse.success(
+                GET_MEDINOTE_LIST_SUCCESS,
+                medinoteService.getMedinoteList(principal)
         ));
     }
 }
