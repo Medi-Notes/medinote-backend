@@ -68,4 +68,11 @@ public class MedinoteController implements MedinoteApi {
                 medinoteService.getMedinoteList(principal)
         ));
     }
+
+    @DeleteMapping
+    public ResponseEntity<ApiResponse<?>> deleteMedinotes(@Valid @RequestBody DeleteMedinotesRequest request) {
+        medinoteService.deleteMedinotes(request);
+
+        return ResponseEntity.ok(ApiResponse.success(DELETE_MEDINOTES_SUCCESS));
+    }
 }

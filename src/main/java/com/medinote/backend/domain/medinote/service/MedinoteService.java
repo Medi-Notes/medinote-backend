@@ -75,4 +75,16 @@ public class MedinoteService {
 
         return MedinoteListResponse.from(medinoteRepository.findAllByMemberId(member));
     }
+
+    @Transactional
+    public void deleteMedinotes(DeleteMedinotesRequest request) {
+        for (Long medinoteId : request.medinoteIdList()) {
+            deleteMedinote(medinoteId);
+        }
+    }
+
+    @Transactional
+    public void deleteMedinote(Long medinoteId) {
+        medinoteRepository.deleteById(medinoteId);
+    }
 }
