@@ -34,7 +34,7 @@ public class MedinoteController implements MedinoteApi {
     }
 
     @PatchMapping("/{medinoteId}")
-    public ResponseEntity<ApiResponse<?>> updateMedinoteState(
+    public ResponseEntity<ApiResponse<Integer>> updateMedinoteState(
             @Valid @RequestBody UpdateMedinoteStateRequest request,
             @PathVariable Long medinoteId) {
 

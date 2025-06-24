@@ -55,7 +55,7 @@ public class MedinoteService {
     }
 
     @Transactional
-    public int updateMedinoteState(Long medinoteId, UpdateMedinoteStateRequest request) {
+    public Integer updateMedinoteState(Long medinoteId, UpdateMedinoteStateRequest request) {
         return medinoteRepository.updateMedinoteStateById(medinoteId, request.medinoteState());
     }
 }

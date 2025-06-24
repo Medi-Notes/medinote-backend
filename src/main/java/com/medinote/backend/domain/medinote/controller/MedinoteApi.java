@@ -11,5 +11,5 @@ import java.security.Principal;
 public interface MedinoteApi {
     ResponseEntity<ApiResponse<MedinoteResponse>> createMedinote(MultipartFile audioFile, Principal principal);
 
-    ResponseEntity<ApiResponse<?>> updateMedinoteState(UpdateMedinoteStateRequest request, Long medinoteId);
+    ResponseEntity<ApiResponse<Integer>> updateMedinoteState(UpdateMedinoteStateRequest request, Long medinoteId);
 }
