@@ -1,4 +1,4 @@
-version: "3.8"
+version: "2.4"
 
 services:
   medinote-backend:
@@ -8,6 +8,8 @@ services:
     container_name: medinote-backend
     ports:
       - "8080:8080"
+    mem_limit: 512m
+    memswap_limit: 1638m
     volumes:
       - .:/app  # 로컬 소스를 컨테이너에 마운트
     #      - /app/build  # Gradle 빌드 아티팩트 위치 (핫 리로드 영향 최소화)
@@ -15,30 +17,30 @@ services:
       - .env
     depends_on:
       - medinote-redis-local
-#      - medinote-mysql-local
+      - medinote-mysql-local
 
-#  medinote-mysql-local:
-#    image: mysql:8.0
-#    container_name: medinote-mysql-local
-#    ports:
-#      - "3307:3306"
-#    environment:
-#      MYSQL_DATABASE: medinote-db
-#      MYSQL_USER: ssafy
-#      MYSQL_PASSWORD: ssafy
-#      MYSQL_ROOT_PASSWORD: root
-#    volumes:
-#      - mysql-data:/var/lib/mysql
+  medinote-mysql-local:
+    image: mysql:8.0
+    container_name: medinote-mysql-local
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: medinote_db
+      MYSQL_USER: test
+      MYSQL_PASSWORD: test
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - medinote-mysql-data:/var/lib/mysql
 
   medinote-redis-local:
     image: redis/redis-stack:latest
     container_name: medinote-redis-local
     ports:
-      - "6380:6379"       # Redis 기본 포트
-      - "8002:8001"
+      - "6379:6379"       # Redis 기본 포트
+      - "8001:8001"
     volumes:
       - redis-data:/data
 
 volumes:
-  mysql-data:
+  medinote-mysql-data:
   redis-data:

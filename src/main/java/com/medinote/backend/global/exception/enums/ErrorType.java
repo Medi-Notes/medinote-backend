@@ -57,13 +57,14 @@ public enum ErrorType {
     /**
      * 404 NOT FOUND
      */
-    HOUSE_ID_NOT_FOUND(HttpStatus.NOT_FOUND, "존재하지 않는 HOUSE ID 입니다."),
+    NOT_FOUND_MEDINOTE_ERROR(HttpStatus.NOT_FOUND, "존재하지 않는 메디노트 ID입니다."),
 
     MEMBER_ALREADY_EXIST_ERROR(HttpStatus.CONFLICT, "이미 존재하는 사용자입니다."),
 
     /**
      * 500 INTERNAL_SERVER_ERROR
      */
+    S3_UPLOAD_FILE(HttpStatus.INTERNAL_SERVER_ERROR, "S3 업로드에 실패했습니다."),
     INTERNAL_SERVER_ERROR(HttpStatus.INTERNAL_SERVER_ERROR, "서버 내부 오류가 발생했습니다.");
 
 
