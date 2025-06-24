@@ -1,4 +1,4 @@
-package com.medinote.backend.domain.medinote.dto;
+package com.medinote.backend.domain.medinote.dto.response;
 
 import com.medinote.backend.domain.medinote.entity.Medinote;
 import com.medinote.backend.domain.medinote.entity.MedinoteState;

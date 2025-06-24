@@ -1,4 +1,4 @@
-package com.medinote.backend.domain.medinote.dto;
+package com.medinote.backend.domain.medinote.dto.request;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotNull;

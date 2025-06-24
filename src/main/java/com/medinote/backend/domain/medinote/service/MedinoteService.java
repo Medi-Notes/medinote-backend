@@ -1,6 +1,11 @@
 package com.medinote.backend.domain.medinote.service;
 
-import com.medinote.backend.domain.medinote.dto.*;
+import com.medinote.backend.domain.medinote.dto.request.DeleteMedinotesRequest;
+import com.medinote.backend.domain.medinote.dto.request.UpdateMedinoteStateRequest;
+import com.medinote.backend.domain.medinote.dto.request.UpdateMedinoteTextRequest;
+import com.medinote.backend.domain.medinote.dto.request.UpdateSttTextRequest;
+import com.medinote.backend.domain.medinote.dto.response.MedinoteListResponse;
+import com.medinote.backend.domain.medinote.dto.response.MedinoteResponse;
 import com.medinote.backend.domain.medinote.entity.Medinote;
 import com.medinote.backend.domain.medinote.entity.MedinoteState;
 import com.medinote.backend.domain.medinote.repository.MedinoteRepository;

@@ -1,6 +1,10 @@
 package com.medinote.backend.domain.medinote.controller;
 
-import com.medinote.backend.domain.medinote.dto.*;
+import com.medinote.backend.domain.medinote.dto.request.DeleteMedinotesRequest;
+import com.medinote.backend.domain.medinote.dto.request.UpdateMedinoteStateRequest;
+import com.medinote.backend.domain.medinote.dto.request.UpdateMedinoteTextRequest;
+import com.medinote.backend.domain.medinote.dto.request.UpdateSttTextRequest;
+import com.medinote.backend.domain.medinote.dto.response.MedinoteResponse;
 import com.medinote.backend.global.common.ApiResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.multipart.MultipartFile;
