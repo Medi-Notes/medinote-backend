@@ -1,9 +1,6 @@
 package com.medinote.backend.domain.medinote.controller;
 
-import com.medinote.backend.domain.medinote.dto.request.DeleteMedinotesRequest;
-import com.medinote.backend.domain.medinote.dto.request.UpdateMedinoteStateRequest;
-import com.medinote.backend.domain.medinote.dto.request.UpdateMedinoteTextRequest;
-import com.medinote.backend.domain.medinote.dto.request.UpdateSttTextRequest;
+import com.medinote.backend.domain.medinote.dto.request.*;
 import com.medinote.backend.domain.medinote.dto.response.MedinoteResponse;
 import com.medinote.backend.global.common.ApiResponse;
 import org.springframework.http.ResponseEntity;
@@ -21,4 +18,6 @@ public interface MedinoteApi {
     ResponseEntity<ApiResponse<Integer>> updateMedinoteText(UpdateMedinoteTextRequest request, Long medinoteId);
 
     ResponseEntity<ApiResponse<?>> deleteMedinotes(DeleteMedinotesRequest request);
+
+    ResponseEntity<ApiResponse<?>> sendMedinoteTransformMessage(Long medinoteId);
 }

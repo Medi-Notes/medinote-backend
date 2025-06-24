@@ -32,6 +32,7 @@ public enum SuccessType {
     UPDATE_MEDINOTE_TEXT_SUCCESS(HttpStatus.OK, "메디노트 Text가 업데이트 되었습니다."),
     GET_MEDINOTE_LIST_SUCCESS(HttpStatus.OK, "메디노트 목록 조회에 성공했습니다."),
     DELETE_MEDINOTES_SUCCESS(HttpStatus.OK, "메디노트 삭제에 성공했습니다."),
+    SEND_MEDINOTE_MESSAGE_SUCCESS(HttpStatus.OK, "메디노트 변환 메시지 발행에 성공했습니다."),
 
 
     /**

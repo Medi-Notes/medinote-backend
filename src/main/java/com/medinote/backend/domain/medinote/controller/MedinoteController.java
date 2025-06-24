@@ -1,9 +1,6 @@
 package com.medinote.backend.domain.medinote.controller;
 
-import com.medinote.backend.domain.medinote.dto.request.DeleteMedinotesRequest;
-import com.medinote.backend.domain.medinote.dto.request.UpdateMedinoteStateRequest;
-import com.medinote.backend.domain.medinote.dto.request.UpdateMedinoteTextRequest;
-import com.medinote.backend.domain.medinote.dto.request.UpdateSttTextRequest;
+import com.medinote.backend.domain.medinote.dto.request.*;
 import com.medinote.backend.domain.medinote.dto.response.MedinoteListResponse;
 import com.medinote.backend.domain.medinote.dto.response.MedinoteResponse;
 import com.medinote.backend.domain.medinote.service.MedinoteService;
@@ -80,4 +77,12 @@ public class MedinoteController implements MedinoteApi {
 
         return ResponseEntity.ok(ApiResponse.success(DELETE_MEDINOTES_SUCCESS));
     }
+
+    @PostMapping("/{medinoteId}/sqs")
+    public ResponseEntity<ApiResponse<?>> sendMedinoteTransformMessage(@PathVariable Long medinoteId) {
+        medinoteService.sendMedinoteTransformMessage(medinoteId);
+
+        return ResponseEntity.ok(ApiResponse.success(SEND_MEDINOTE_MESSAGE_SUCCESS));
+    }
+
 }
