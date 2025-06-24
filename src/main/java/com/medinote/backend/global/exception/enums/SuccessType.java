@@ -27,6 +27,7 @@ public enum SuccessType {
   
     // 메디노트 관련
     CREATE_MEDINOTE_SUCCESS(HttpStatus.CREATED, "메디노트 생성에 성공했습니다."),
+    UPDATE_MEDINOTE_STATE_SUCCESS(HttpStatus.OK, "메디노트 상태가 업데이트 되었습니다."),
 
 
     /**

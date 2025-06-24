@@ -1,5 +1,6 @@
 package com.medinote.backend.domain.medinote.service;
 
+import com.medinote.backend.domain.medinote.dto.UpdateMedinoteStateRequest;
 import com.medinote.backend.domain.medinote.entity.Medinote;
 import com.medinote.backend.domain.medinote.entity.MedinoteState;
 import com.medinote.backend.domain.medinote.repository.MedinoteRepository;
@@ -21,13 +22,14 @@ import static com.medinote.backend.global.exception.enums.ErrorType.S3_UPLOAD_FI
 
 @Service
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class MedinoteService {
     private final S3Service s3Service;
     private final MedinoteRepository medinoteRepository;
     private final MemberRepository memberRepository;
 
     @Transactional
-    public String createMedinote(MultipartFile audioFile, Principal principal) {
+    public Medinote createMedinote(MultipartFile audioFile, Principal principal) {
         Long memberId = JwtProvider.getMemberIdFromPrincipal(principal);
         Member member = memberRepository.getMemberByMemberId(memberId)
                 .orElseThrow(() -> new CustomException(NOT_FOUND_MEMBER_ERROR));;
@@ -48,6 +50,11 @@ public class MedinoteService {
 
         medinoteRepository.save(medinote);
 
-        return s3Key;
+        return medinote;
+    }
+
+    @Transactional
+    public int updateMedinoteState(Long medinoteId, UpdateMedinoteStateRequest request) {
+        return medinoteRepository.updateMedinoteStateById(medinoteId, request.medinoteState());
     }
 }
