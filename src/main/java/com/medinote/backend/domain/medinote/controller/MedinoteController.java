@@ -2,6 +2,7 @@ package com.medinote.backend.domain.medinote.controller;
 
 import com.medinote.backend.domain.medinote.dto.MedinoteResponse;
 import com.medinote.backend.domain.medinote.dto.UpdateMedinoteStateRequest;
+import com.medinote.backend.domain.medinote.dto.UpdateMedinoteTextRequest;
 import com.medinote.backend.domain.medinote.dto.UpdateSttTextRequest;
 import com.medinote.backend.domain.medinote.service.MedinoteService;
 import com.medinote.backend.global.common.ApiResponse;
@@ -15,8 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.security.Principal;
 
-import static com.medinote.backend.global.exception.enums.SuccessType.CREATE_MEDINOTE_SUCCESS;
-import static com.medinote.backend.global.exception.enums.SuccessType.UPDATE_MEDINOTE_STATE_SUCCESS;
+import static com.medinote.backend.global.exception.enums.SuccessType.*;
 
 @RestController
 @RequestMapping("/api/v1/medinote")
@@ -50,7 +50,17 @@ public class MedinoteController implements MedinoteApi {
             @PathVariable Long medinoteId) {
 
         return ResponseEntity.ok(ApiResponse.success(
-                UPDATE_MEDINOTE_STATE_SUCCESS, medinoteService.updateSttText(medinoteId, request)
+                UPDATE_STT_TEXT_SUCCESS, medinoteService.updateSttText(medinoteId, request)
+        ));
+    }
+
+    @PatchMapping("/{medinoteId}/medinoteText")
+    public ResponseEntity<ApiResponse<Integer>> updateMedinoteText(
+            @Valid @RequestBody UpdateMedinoteTextRequest request,
+            @PathVariable Long medinoteId) {
+
+        return ResponseEntity.ok(ApiResponse.success(
+                UPDATE_MEDINOTE_TEXT_SUCCESS, medinoteService.updateMedinoteText(medinoteId, request)
         ));
     }
 }
