@@ -2,6 +2,7 @@ package com.medinote.backend.domain.medinote.controller;
 
 import com.medinote.backend.domain.medinote.dto.MedinoteResponse;
 import com.medinote.backend.domain.medinote.dto.UpdateMedinoteStateRequest;
+import com.medinote.backend.domain.medinote.dto.UpdateSttTextRequest;
 import com.medinote.backend.domain.medinote.service.MedinoteService;
 import com.medinote.backend.global.common.ApiResponse;
 import jakarta.validation.Valid;
@@ -33,13 +34,23 @@ public class MedinoteController implements MedinoteApi {
                 ));
     }
 
-    @PatchMapping("/{medinoteId}")
+    @PatchMapping("/{medinoteId}/state")
     public ResponseEntity<ApiResponse<Integer>> updateMedinoteState(
             @Valid @RequestBody UpdateMedinoteStateRequest request,
             @PathVariable Long medinoteId) {
 
         return ResponseEntity.ok(ApiResponse.success(
                 UPDATE_MEDINOTE_STATE_SUCCESS, medinoteService.updateMedinoteState(medinoteId, request)
+        ));
+    }
+
+    @PatchMapping("/{medinoteId}/sttText")
+    public ResponseEntity<ApiResponse<Integer>> updateSttText(
+            @Valid @RequestBody UpdateSttTextRequest request,
+            @PathVariable Long medinoteId) {
+
+        return ResponseEntity.ok(ApiResponse.success(
+                UPDATE_MEDINOTE_STATE_SUCCESS, medinoteService.updateSttText(medinoteId, request)
         ));
     }
 }

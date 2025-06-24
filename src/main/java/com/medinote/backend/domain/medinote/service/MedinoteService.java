@@ -2,6 +2,7 @@ package com.medinote.backend.domain.medinote.service;
 
 import com.medinote.backend.domain.medinote.dto.MedinoteResponse;
 import com.medinote.backend.domain.medinote.dto.UpdateMedinoteStateRequest;
+import com.medinote.backend.domain.medinote.dto.UpdateSttTextRequest;
 import com.medinote.backend.domain.medinote.entity.Medinote;
 import com.medinote.backend.domain.medinote.entity.MedinoteState;
 import com.medinote.backend.domain.medinote.repository.MedinoteRepository;
@@ -57,5 +58,10 @@ public class MedinoteService {
     @Transactional
     public Integer updateMedinoteState(Long medinoteId, UpdateMedinoteStateRequest request) {
         return medinoteRepository.updateMedinoteStateById(medinoteId, request.medinoteState());
+    }
+
+    @Transactional
+    public Integer updateSttText(Long medinoteId, UpdateSttTextRequest request) {
+        return medinoteRepository.updateSttTextById(medinoteId, request.sttText());
     }
 }

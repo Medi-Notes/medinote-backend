@@ -13,4 +13,8 @@ public interface MedinoteRepository extends JpaRepository<Medinote, Long> {
     @Modifying(clearAutomatically = true)
     @Query("UPDATE Medinote m SET m.medinoteState = :state WHERE m.medinoteId = :id")
     int updateMedinoteStateById(Long id, MedinoteState state);
+
+    @Modifying(clearAutomatically = true)
+    @Query("UPDATE Medinote m SET m.sttText = :sttText WHERE m.medinoteId = :id")
+    int updateSttTextById(Long id, String sttText);
 }
