@@ -5,13 +5,12 @@ import com.medinote.backend.global.common.BaseTimeEntity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 
 @Entity
 @Builder
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
 public class Medinote extends BaseTimeEntity {

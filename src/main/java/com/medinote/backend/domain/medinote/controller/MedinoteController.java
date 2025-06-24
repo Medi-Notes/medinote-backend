@@ -1,7 +1,7 @@
 package com.medinote.backend.domain.medinote.controller;
 
+import com.medinote.backend.domain.medinote.dto.MedinoteResponse;
 import com.medinote.backend.domain.medinote.dto.UpdateMedinoteStateRequest;
-import com.medinote.backend.domain.medinote.entity.Medinote;
 import com.medinote.backend.domain.medinote.service.MedinoteService;
 import com.medinote.backend.global.common.ApiResponse;
 import jakarta.validation.Valid;
@@ -24,7 +24,7 @@ public class MedinoteController implements MedinoteApi {
     private final MedinoteService medinoteService;
 
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ResponseEntity<ApiResponse<Medinote>> createMedinote(@RequestParam("file") MultipartFile audioFile, Principal principal) {
+    public ResponseEntity<ApiResponse<MedinoteResponse>> createMedinote(@RequestParam("file") MultipartFile audioFile, Principal principal) {
 
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(ApiResponse.success(

@@ -1,5 +1,6 @@
 package com.medinote.backend.domain.medinote.service;
 
+import com.medinote.backend.domain.medinote.dto.MedinoteResponse;
 import com.medinote.backend.domain.medinote.dto.UpdateMedinoteStateRequest;
 import com.medinote.backend.domain.medinote.entity.Medinote;
 import com.medinote.backend.domain.medinote.entity.MedinoteState;
@@ -29,10 +30,10 @@ public class MedinoteService {
     private final MemberRepository memberRepository;
 
     @Transactional
-    public Medinote createMedinote(MultipartFile audioFile, Principal principal) {
+    public MedinoteResponse createMedinote(MultipartFile audioFile, Principal principal) {
         Long memberId = JwtProvider.getMemberIdFromPrincipal(principal);
         Member member = memberRepository.getMemberByMemberId(memberId)
-                .orElseThrow(() -> new CustomException(NOT_FOUND_MEMBER_ERROR));;
+                .orElseThrow(() -> new CustomException(NOT_FOUND_MEMBER_ERROR));
 
         String s3Key = s3Service.generateS3Key(memberId, audioFile.getOriginalFilename());
         try {
@@ -50,7 +51,7 @@ public class MedinoteService {
 
         medinoteRepository.save(medinote);
 
-        return medinote;
+        return MedinoteResponse.from(medinote);
     }
 
     @Transactional
