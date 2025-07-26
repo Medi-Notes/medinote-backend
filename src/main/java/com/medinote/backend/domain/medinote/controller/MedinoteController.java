@@ -33,7 +33,7 @@ public class MedinoteController implements MedinoteApi {
                 ));
     }
 
-    @PatchMapping("/{medinoteId}/state")
+    @PatchMapping("/lambda/{medinoteId}/state")
     public ResponseEntity<ApiResponse<Integer>> updateMedinoteState(
             @Valid @RequestBody UpdateMedinoteStateRequest request,
             @PathVariable Long medinoteId) {
@@ -43,7 +43,7 @@ public class MedinoteController implements MedinoteApi {
         ));
     }
 
-    @PatchMapping("/{medinoteId}/sttText")
+    @PatchMapping("/lambda/{medinoteId}/sttText")
     public ResponseEntity<ApiResponse<Integer>> updateSttText(
             @Valid @RequestBody UpdateSttTextRequest request,
             @PathVariable Long medinoteId) {
@@ -53,7 +53,7 @@ public class MedinoteController implements MedinoteApi {
         ));
     }
 
-    @PatchMapping("/{medinoteId}/medinoteText")
+    @PatchMapping("/lambda/{medinoteId}/medinoteText")
     public ResponseEntity<ApiResponse<Integer>> updateMedinoteText(
             @Valid @RequestBody UpdateMedinoteTextRequest request,
             @PathVariable Long medinoteId) {

@@ -15,7 +15,8 @@ public class AuthWhiteList {
             "/h2-console/**",
             "/swagger-ui/**",
             "/v3/api-docs/**",
-            "/swagger-resources/**"
+            "/swagger-resources/**",
+            "/api/v1/medinote/lambda/**"
     );
 
     public static final String[] AUTH_WHITELIST = Stream.concat(
