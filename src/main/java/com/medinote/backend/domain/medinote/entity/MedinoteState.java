@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 public enum MedinoteState {
     PENDING,
     PROCESSING,
-    FINISH,
+    STT_DONE,
+    COMPLETED,
     REJECTED;
 }
