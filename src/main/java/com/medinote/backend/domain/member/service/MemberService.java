@@ -85,7 +85,8 @@ public class MemberService {
         return MemberInfoResponse.of(
                 member.getName(),
                 member.getEmail(),
-                member.getSocialPlatform()
+                member.getSocialPlatform(),
+                member.getCreatedAt()
         );
     }
 
