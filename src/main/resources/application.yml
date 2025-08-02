@@ -41,7 +41,7 @@ oauth:
   kakao:
     client-id: ${KAKAO_REST_API_KEY}
     authorization-grant-type: "authorization_code"
-    redirect-uri: "https://medinote.cloud/auth/kakao/redirect"
+    redirect-uri: "https://www.medinote.cloud/auth/kakao/redirect"
 
   google:
     client-id: ${GOOGLE_REST_API_KEY}
