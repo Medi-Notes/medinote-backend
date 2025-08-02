@@ -47,7 +47,7 @@ oauth:
     client-id: ${GOOGLE_REST_API_KEY}
     client-secret: ${GOOGLE_OAUTH_CLIENT_SECRET}
     authorization-grant-type: "authorization_code"
-    redirect-uri: "https://medinote.cloud/auth/google/redirect"
+    redirect-uri: "https://www.medinote.cloud/auth/google/redirect"
 
 #management:
 #  endpoints:
