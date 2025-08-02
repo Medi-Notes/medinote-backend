@@ -10,7 +10,7 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-                .allowedOrigins("http://localhost:8080", "http://localhost:5173")
+                .allowedOrigins("https://medinote.cloud", "https://www.medinote.cloud")
 //                .allowedOrigins("*")
 //                .allowedMethods("GET", "POST", "PUT", "DELETE", "PATCH")
                 .allowedMethods("*")
