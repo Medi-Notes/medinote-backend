@@ -16,7 +16,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.net.URL;
 import java.security.Principal;
 
 import static com.medinote.backend.global.exception.enums.SuccessType.*;
