@@ -3,7 +3,10 @@ package com.medinote.backend.domain.medinote.controller;
 import com.medinote.backend.domain.medinote.dto.request.*;
 import com.medinote.backend.domain.medinote.dto.response.MedinoteListResponse;
 import com.medinote.backend.domain.medinote.dto.response.MedinoteResponse;
+import com.medinote.backend.domain.medinote.dto.response.PresignedUrlResponse;
 import com.medinote.backend.domain.medinote.service.MedinoteService;
+import com.medinote.backend.global.auth.jwt.JwtProvider;
+import com.medinote.backend.global.aws.service.S3Service;
 import com.medinote.backend.global.common.ApiResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -13,6 +16,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.net.URL;
 import java.security.Principal;
 
 import static com.medinote.backend.global.exception.enums.SuccessType.*;
@@ -22,6 +26,7 @@ import static com.medinote.backend.global.exception.enums.SuccessType.*;
 @RequiredArgsConstructor
 public class MedinoteController implements MedinoteApi {
     private final MedinoteService medinoteService;
+    private final S3Service s3Service;
 
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<ApiResponse<MedinoteResponse>> createMedinote(@RequestParam("file") MultipartFile audioFile, Principal principal) {
@@ -85,4 +90,13 @@ public class MedinoteController implements MedinoteApi {
         return ResponseEntity.ok(ApiResponse.success(SEND_MEDINOTE_MESSAGE_SUCCESS));
     }
 
+    @GetMapping("/presigned-url")
+    public ResponseEntity<ApiResponse<PresignedUrlResponse>> getMedinotePresignedURL(@RequestParam String filename, Principal principal) {
+
+        return ResponseEntity.ok(ApiResponse.success(
+                GET_PRESIGNED_URL_SUCCESS,
+                PresignedUrlResponse.of(
+                        s3Service.getPresignedURL(JwtProvider.getMemberIdFromPrincipal(principal), filename))
+        ));
+    }
 }
