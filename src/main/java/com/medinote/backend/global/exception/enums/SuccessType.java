@@ -34,6 +34,8 @@ public enum SuccessType {
     DELETE_MEDINOTES_SUCCESS(HttpStatus.OK, "메디노트 삭제에 성공했습니다."),
     SEND_MEDINOTE_MESSAGE_SUCCESS(HttpStatus.OK, "메디노트 변환 메시지 발행에 성공했습니다."),
 
+    GET_PRESIGNED_URL_SUCCESS(HttpStatus.OK, "presigned url 발급에 성공했습니다."),
+
 
     /**
      * 201 CREATED

@@ -2,8 +2,10 @@ package com.medinote.backend.domain.medinote.controller;
 
 import com.medinote.backend.domain.medinote.dto.request.*;
 import com.medinote.backend.domain.medinote.dto.response.MedinoteResponse;
+import com.medinote.backend.domain.medinote.dto.response.PresignedUrlResponse;
 import com.medinote.backend.global.common.ApiResponse;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.security.Principal;
@@ -20,4 +22,6 @@ public interface MedinoteApi {
     ResponseEntity<ApiResponse<?>> deleteMedinotes(DeleteMedinotesRequest request);
 
     ResponseEntity<ApiResponse<?>> sendMedinoteTransformMessage(Long medinoteId);
+
+    ResponseEntity<ApiResponse<PresignedUrlResponse>> getMedinotePresignedURL(String filename, Principal principal);
 }

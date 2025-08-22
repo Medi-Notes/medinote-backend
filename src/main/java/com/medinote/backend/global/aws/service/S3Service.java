@@ -1,5 +1,6 @@
 package com.medinote.backend.global.aws.service;
 
+import io.awspring.cloud.s3.S3Template;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -10,23 +11,28 @@ import software.amazon.awssdk.services.s3.model.DeleteObjectRequest;
 import software.amazon.awssdk.services.s3.model.PutObjectRequest;
 
 import java.io.IOException;
+import java.net.URL;
+import java.time.Duration;
 import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
 public class S3Service {
     private final S3Client s3Client;
+    private final S3Template s3Template;
+
     private static final String S3_KEY_PREFIX = "audio";
+    private static final String S3_ORIGINAL_PREFIX = "original/audio";
 
     @Value("${spring.cloud.aws.s3.bucket-name}")
-    private String bucket;
+    private String bucketName;
 
     /**
      * S3 업로드
      */
     public void upload(MultipartFile file, String key) throws IOException {
         PutObjectRequest putRequest = PutObjectRequest.builder()
-                .bucket(bucket)
+                .bucket(bucketName)
                 .key(key)
                 .contentType(file.getContentType())
                 .build();
@@ -39,7 +45,7 @@ public class S3Service {
      */
     public void delete(String key) {
         DeleteObjectRequest deleteRequest = DeleteObjectRequest.builder()
-                .bucket(bucket)
+                .bucket(bucketName)
                 .key(key)
                 .build();
 
@@ -48,5 +54,17 @@ public class S3Service {
 
     public String generateS3Key(Long memberId, String fileName) {
         return S3_KEY_PREFIX + "/" + memberId + "/" + UUID.randomUUID() + "-" + fileName;
+    }
+
+    public String generateOriginalS3Key(Long memberId, String fileName) {
+        return S3_ORIGINAL_PREFIX + "/" + memberId + "/" + UUID.randomUUID().toString().substring(0,6) + "-" + fileName;
+    }
+
+    public URL getPresignedURL(Long memberId, String fileName) {
+        return s3Template.createSignedPutURL(
+                bucketName,
+                generateOriginalS3Key(memberId, fileName),
+                Duration.ofMinutes(5)
+        );
     }
 }
